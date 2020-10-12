@@ -19,19 +19,11 @@ class GithubUserProvider
         $this->client = $client;
     }
 
-    public function loadUserByUserName($username)
+    public function loadUserByUserName($username, $userData)
     {
         $response = $this->client->get('https://api.github.com/user?access_token=' . $username);
 
         $result = $response->getBody()->getContents();
-
-        $userData = [
-            'login' => 'my login',
-            'name' => 'myusername',
-            'email' => 'adre@mail.com',
-            'avatar_url' => 'url to avatar',
-            'html_url' => 'html url',
-        ];
 
         if (!$userData) {
             throw new \LogicException('Did not managed to get your user info from github');
