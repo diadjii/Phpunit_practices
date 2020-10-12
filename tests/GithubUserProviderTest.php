@@ -56,10 +56,11 @@ class GithubUserProviderTest extends TestCase
 
   public function testLoadUserByUsernameThrowingExecption()
   {
+
+    $this->expectException('LogicException');
+
     $githubUserProvider = new GithubUserProvider($this->client);
 
     $user = $githubUserProvider->loadUserByUsername('an-access-token', []);
-
-    $this->expectException('LogicException');
   }
 }
